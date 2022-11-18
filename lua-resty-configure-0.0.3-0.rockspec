@@ -1,5 +1,5 @@
 package = "lua-resty-configure"
-version = "0.0.2-0"
+version = "0.0.3-0"
 source = {
    url = "git+https://github.com/fesily/lua-resty-configure.git"
 }

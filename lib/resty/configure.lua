@@ -1,9 +1,13 @@
 local config_string = ngx.config.nginx_configure()
 
+local function has_config(name)
+    return config_string:find(name, 1, true) ~= nil
+end
+
 local _M = {}
-_M.NGX_THREADS = config_string:find("--with-threads") ~= nil
-_M.NGX_COMPAT = config_string:find("--with-compat") ~= nil
-_M.NGX_HAVE_FILE_AIO = config_string:find("--with-file-aio") ~= nil
+_M.NGX_THREADS = has_config("--with-threads")
+_M.NGX_COMPAT = has_config("--with-compat")
+_M.NGX_HAVE_FILE_AIO = has_config("--with-file-aio")
 if jit.os == 'Windows' then
 else
     _M.NGX_HAVE_FD_CLOEXEC = true
